@@ -26,16 +26,48 @@
         .feature-card.active {
             background-color: white;
         }
+
+        /* Animated Gradient */
+        .gradient-orb {
+            background: linear-gradient(135deg, #163E5A, #2B2C2F, #163E5A);
+            background-size: 200% 200%;
+            animation: gradientFlow 8s ease infinite;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .gradient-orb::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, rgba(22, 62, 90, 0.5), rgba(43, 44, 47, 0.3));
+            border-radius: 50%;
+            filter: blur(20px);
+            opacity: 0.8;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
     </style>
 </head>
 <body class="antialiased bg-off-white">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/95 backdrop-blur-md z-50 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-            <div class="font-semibold text-white">Your Name</div>
+            <div class="font-semibold text-white">Alex Stroud</div>
             <div class="flex gap-8">
                 <a href="#work" class="text-white/80 hover:text-white transition-colors">Work</a>
-                <a href="#about" class="text-white/80 hover:text-white transition-colors">About</a>
                 <a href="#contact" class="text-white/80 hover:text-white transition-colors">Contact</a>
             </div>
         </div>
@@ -53,15 +85,9 @@
                         Senior Product Manager building data-informed, design-led digital experiences. I turn customer friction into business momentum across consumer and enterprise tech.
                     </p>
                 </div>
-                <div class="relative">
-                    <!-- Placeholder for Lottie Animation -->
-                    <div class="aspect-square bg-white/5 rounded-3xl flex items-center justify-center border border-white/10">
-                        <div class="text-white/60 text-center">
-                            <div class="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
-                            <p class="text-sm text-white/80">Lottie Animation</p>
-                            <p class="text-xs mt-2">Coming Tomorrow</p>
-                        </div>
-                    </div>
+                <div class="relative flex items-center justify-center">
+                    <!-- Animated Gradient Orb -->
+                    <div class="gradient-orb w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"></div>
                 </div>
             </div>
         </div>
