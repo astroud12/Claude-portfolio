@@ -130,12 +130,23 @@
                     </div>
                 </div>
 
-                <!-- Right: Video -->
-                <div class="rounded-2xl overflow-hidden shadow-lg">
-                    <video autoplay loop muted playsinline class="w-full">
-                        <source src="Seat Reorder V1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <!-- Right: Video with Browser Frame -->
+                <div class="rounded-lg overflow-hidden border border-gray-200" style="box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+                    <!-- Browser Chrome -->
+                    <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        </div>
+                    </div>
+                    <!-- Video Content -->
+                    <div class="bg-white">
+                        <video autoplay loop muted playsinline class="w-full">
+                            <source src="Seat Reorder V1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
             </div>
         </div>
