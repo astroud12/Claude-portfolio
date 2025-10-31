@@ -160,7 +160,7 @@
                 </div>
 
                 <!-- Right: Video with Browser Frame -->
-                <div class="rounded-lg overflow-hidden border border-gray-200" style="box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+                <div class="inline-block rounded-lg overflow-hidden border border-gray-200" style="box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
                     <!-- Browser Chrome -->
                     <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
                         <div class="flex gap-2">
@@ -170,12 +170,10 @@
                         </div>
                     </div>
                     <!-- Video Content -->
-                    <div class="bg-white">
-                        <video autoplay loop muted playsinline class="w-full">
-                            <source src="Seat Reorder V1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+                    <video autoplay loop muted playsinline class="block">
+                        <source src="Seat Reorder V1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
@@ -219,9 +217,9 @@
 
                 <!-- Mobile Demo Video -->
                 <div>
-                    <div class="mx-auto" id="hawaiianMobileFrame">
+                    <div class="mx-auto w-80">
                         <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-gray-800">
-                            <video id="hawaiianMobileVideo" autoplay loop muted playsinline class="video-fade" style="display: block; background-color: #000;">
+                            <video id="hawaiianMobileVideo" autoplay loop muted playsinline class="w-full h-full object-cover video-fade" style="aspect-ratio: 9/19.5;">
                                 <source src="HA App-to-App checkin portrait 4k.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -298,9 +296,9 @@
 
                 <!-- Mobile Demo Video -->
                 <div>
-                    <div class="mx-auto" id="riservaFrame">
+                    <div class="mx-auto w-80">
                         <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-gray-800">
-                            <video id="riservaVideo" autoplay loop muted playsinline style="display: block; background-color: #000;">
+                            <video autoplay loop muted playsinline class="w-full h-full object-cover" style="aspect-ratio: 9/19.5;">
                                 <source src="Riserva screens v6.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -336,33 +334,10 @@
     </section>
 
     <script>
-        // Size frames to exact video dimensions
-        function sizeFrameToVideo(videoId, frameId) {
-            const video = document.getElementById(videoId);
-            const frame = document.getElementById(frameId);
-
-            function updateFrameSize() {
-                if (video.videoWidth && video.videoHeight) {
-                    frame.style.width = video.videoWidth + 'px';
-                    frame.style.height = video.videoHeight + 'px';
-                }
-            }
-
-            video.addEventListener('loadedmetadata', updateFrameSize);
-            // In case metadata is already loaded
-            if (video.readyState >= 1) {
-                updateFrameSize();
-            }
-        }
-
         // Video switching for Hawaiian Mobile App section
         document.addEventListener('DOMContentLoaded', function() {
             const featureCards = document.querySelectorAll('.feature-card');
             const video = document.getElementById('hawaiianMobileVideo');
-
-            // Size frames to exact video dimensions
-            sizeFrameToVideo('hawaiianMobileVideo', 'hawaiianMobileFrame');
-            sizeFrameToVideo('riservaVideo', 'riservaFrame');
 
             // Set first card as active on page load
             if (featureCards.length > 0) {
