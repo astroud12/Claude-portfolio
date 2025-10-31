@@ -3,7 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Clean V2: Cream + Dark Hero</title>
+    <title>Alexander Stroud - Senior Product Manager</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Senior Product Manager with 10+ years building data-informed products that drive business outcomes">
+    <link rel="canonical" href="https://www.stroud.ai">
+
+    <!-- Open Graph / Social Sharing Meta Tags -->
+    <meta property="og:title" content="Alexander Stroud - Senior Product Manager">
+    <meta property="og:description" content="Building data-informed products that drive business outcomes">
+    <meta property="og:url" content="https://www.stroud.ai">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.stroud.ai/portfolio-preview.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alexander Stroud - Senior Product Manager">
+    <meta name="twitter:description" content="Building data-informed products that drive business outcomes">
+    <meta name="twitter:image" content="https://www.stroud.ai/portfolio-preview.jpg">
+
+    <!-- Google Analytics 4 - IMPORTANT: Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        // TODO: After adding your GA4 ID, set up IP exclusion filter in GA4 dashboard to exclude your own traffic
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -68,7 +95,7 @@
             <div class="font-semibold text-white">Alex Stroud</div>
             <div class="flex gap-8">
                 <a href="#work" class="text-white/80 hover:text-white transition-colors">Work</a>
-                <a href="#contact" class="text-white/80 hover:text-white transition-colors">Contact</a>
+                <a href="#" onclick="window.location.href='mai'+'lto:'+'alex.stroud12'+'@'+'gmail.com'+'?subject=Hello%20Alex!'; gtag('event', 'contact_email_click', {'event_category': 'engagement', 'event_label': 'nav_contact'}); return false;" class="text-white/80 hover:text-white transition-colors">Contact</a>
             </div>
         </div>
     </nav>
@@ -308,13 +335,13 @@
                 Currently exploring senior product management opportunities in consumer tech
             </p>
             <div class="flex gap-6 justify-center">
-                <a href="mailto:your.email@example.com" class="inline-flex items-center gap-2 px-6 py-3 bg-deep-blue text-white rounded-xl hover:bg-deep-blue/90 transition-colors">
+                <a href="#" onclick="window.location.href='mai'+'lto:'+'alex.stroud12'+'@'+'gmail.com'+'?subject=Hello%20Alex!'; gtag('event', 'contact_email_click', {'event_category': 'engagement', 'event_label': 'footer_cta'}); return false;" class="inline-flex items-center gap-2 px-6 py-3 bg-deep-blue text-white rounded-xl hover:bg-deep-blue/90 transition-colors">
                     Get in touch
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
                     </svg>
                 </a>
-                <a href="https://linkedin.com/in/yourprofile" class="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-xl hover:border-deep-blue transition-colors">
+                <a href="https://linkedin.com/in/yourprofile?utm_source=portfolio&utm_medium=website" onclick="gtag('event', 'linkedin_profile_click', {'event_category': 'engagement', 'event_label': 'footer_linkedin'});" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-xl hover:border-deep-blue transition-colors">
                     LinkedIn
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
@@ -325,7 +352,7 @@
     </section>
 
     <script>
-        // Video switching for Hawaiian Mobile App section
+        // Analytics & Video switching
         document.addEventListener('DOMContentLoaded', function() {
             const featureCards = document.querySelectorAll('.feature-card');
             const video = document.getElementById('hawaiianMobileVideo');
@@ -335,13 +362,22 @@
                 featureCards[0].classList.add('active');
             }
 
+            // Video switching with analytics tracking
             featureCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     switchVideo(this.dataset.video, this);
                 });
 
                 card.addEventListener('click', function() {
+                    const featureName = this.querySelector('h4').textContent;
                     switchVideo(this.dataset.video, this);
+                    // Track feature interaction
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'feature_interaction', {
+                            'event_category': 'engagement',
+                            'event_label': featureName
+                        });
+                    }
                 });
             });
 
@@ -360,6 +396,46 @@
                     }, 300);
                 }
             }
+
+            // Track project section visibility
+            const projectSections = document.querySelectorAll('section[id="work"], section:has(h2)');
+            const projectObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const projectTitle = entry.target.querySelector('h2')?.textContent;
+                        if (projectTitle && typeof gtag !== 'undefined') {
+                            gtag('event', 'project_view', {
+                                'event_category': 'engagement',
+                                'event_label': projectTitle
+                            });
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            projectSections.forEach(section => projectObserver.observe(section));
+
+            // Scroll depth tracking
+            let scrollDepths = [25, 50, 75, 100];
+            let trackedDepths = [];
+
+            window.addEventListener('scroll', function() {
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = (window.scrollY / scrollHeight) * 100;
+
+                scrollDepths.forEach(depth => {
+                    if (scrolled >= depth && !trackedDepths.includes(depth)) {
+                        trackedDepths.push(depth);
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'scroll_depth', {
+                                'event_category': 'engagement',
+                                'event_label': depth + '%',
+                                'value': depth
+                            });
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
