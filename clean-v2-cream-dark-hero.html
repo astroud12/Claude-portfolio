@@ -23,6 +23,9 @@
         .video-fade {
             transition: opacity 0.3s ease-in-out;
         }
+        .feature-card.active {
+            background-color: white;
+        }
     </style>
 </head>
 <body class="antialiased bg-off-white">
@@ -106,7 +109,7 @@
     <section class="py-16 px-8 bg-off-white" id="work">
         <div class="max-w-7xl mx-auto">
             <div class="mb-6">
-                <p class="text-sm text-gray-600 mb-2">0.1 Hawaiian Airlines — Checkout</p>
+                <p class="text-sm text-deep-blue mb-2">0.1 Hawaiian Airlines — Checkout</p>
                 <h2 class="text-4xl font-light text-gray-900">
                     Every Product Is a Series of Experiments
                 </h2>
@@ -124,8 +127,8 @@
 
                     <!-- Inline Metrics -->
                     <div class="text-sm text-gray-900">
-                        <span class="font-medium">+13%</span> Conversion Rate Lift  |
-                        <span class="font-medium">$52M</span> Projected Annual Revenue  |
+                        <span class="font-medium">+13%</span> Conversion Rate Lift  <span class="text-deep-blue">|</span>
+                        <span class="font-medium">$52M</span> Projected Annual Revenue  <span class="text-deep-blue">|</span>
                         <span class="font-medium">75%</span> Reduction in Seat Failures
                     </div>
                 </div>
@@ -156,7 +159,7 @@
     <section class="py-16 px-8 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="mb-6">
-                <p class="text-sm text-gray-600 mb-2">0.2 Hawaiian Airlines — Mobile App</p>
+                <p class="text-sm text-deep-blue mb-2">0.2 Hawaiian Airlines — Mobile App</p>
                 <h2 class="text-4xl font-light text-gray-900">
                     Ship Delight Every Sprint
                 </h2>
@@ -207,7 +210,7 @@
     <section class="py-16 px-8 bg-off-white">
         <div class="max-w-7xl mx-auto">
             <div class="mb-6">
-                <p class="text-sm text-gray-600 mb-2">0.3 Batten</p>
+                <p class="text-sm text-deep-blue mb-2">0.3 Batten</p>
                 <h2 class="text-4xl font-light text-gray-900">
                     Building Trust Starts with Knowing Your Customers
                 </h2>
@@ -225,8 +228,8 @@
 
                     <!-- Inline Metrics -->
                     <div class="text-sm text-gray-900">
-                        <span class="font-medium">+20%</span> Click-Through Rate  |
-                        <span class="font-medium">+5%</span> Earnings Per Click  |
+                        <span class="font-medium">+20%</span> Click-Through Rate  <span class="text-deep-blue">|</span>
+                        <span class="font-medium">+5%</span> Earnings Per Click  <span class="text-deep-blue">|</span>
                         <span class="font-medium">300%</span> YoY Organic Traffic Growth
                     </div>
                 </div>
@@ -243,7 +246,7 @@
     <section class="py-16 px-8 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="mb-6">
-                <p class="text-sm text-gray-600 mb-2">0.4 Riserva (Klos)</p>
+                <p class="text-sm text-deep-blue mb-2">0.4 Riserva (Klos)</p>
                 <h2 class="text-4xl font-light text-gray-900">
                     User Activation Starts with Context Precision
                 </h2>
@@ -260,9 +263,9 @@
 
                     <!-- Inline Metrics -->
                     <div class="text-sm text-gray-900">
-                        <span class="font-medium">90%</span> Onboarding Completion  |
-                        <span class="font-medium">+16%</span> Retention Lift  |
-                        <span class="font-medium">500</span> Weekly Active Users  |
+                        <span class="font-medium">90%</span> Onboarding Completion  <span class="text-deep-blue">|</span>
+                        <span class="font-medium">+16%</span> Retention Lift  <span class="text-deep-blue">|</span>
+                        <span class="font-medium">500</span> Weekly Active Users  <span class="text-deep-blue">|</span>
                         <span class="font-medium">50K</span> Sessions/Month
                     </div>
                 </div>
@@ -335,17 +338,22 @@
             sizeFrameToVideo('hawaiianMobileVideo', 'hawaiianMobileFrame');
             sizeFrameToVideo('riservaVideo', 'riservaFrame');
 
+            // Set first card as active on page load
+            if (featureCards.length > 0) {
+                featureCards[0].classList.add('active');
+            }
+
             featureCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    switchVideo(this.dataset.video);
+                    switchVideo(this.dataset.video, this);
                 });
 
                 card.addEventListener('click', function() {
-                    switchVideo(this.dataset.video);
+                    switchVideo(this.dataset.video, this);
                 });
             });
 
-            function switchVideo(videoSrc) {
+            function switchVideo(videoSrc, clickedCard) {
                 if (video.src.indexOf(videoSrc) === -1) {
                     video.style.opacity = '0';
                     setTimeout(() => {
@@ -353,6 +361,10 @@
                         video.load();
                         video.play();
                         video.style.opacity = '1';
+
+                        // Update active state
+                        featureCards.forEach(card => card.classList.remove('active'));
+                        clickedCard.classList.add('active');
                     }, 300);
                 }
             }
