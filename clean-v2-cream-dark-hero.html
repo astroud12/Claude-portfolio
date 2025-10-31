@@ -179,9 +179,9 @@
 
                 <!-- Mobile Demo Video -->
                 <div>
-                    <div class="mx-auto w-72">
-                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-gray-800" style="aspect-ratio: 9 / 19.5;">
-                            <video id="hawaiianMobileVideo" autoplay loop muted playsinline class="w-full h-full object-contain video-fade" style="background-color: #000;">
+                    <div class="mx-auto" id="hawaiianMobileFrame">
+                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-gray-800">
+                            <video id="hawaiianMobileVideo" autoplay loop muted playsinline class="video-fade" style="display: block; background-color: #000;">
                                 <source src="HA App-to-App checkin portrait 4k.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -258,9 +258,9 @@
 
                 <!-- Mobile Demo Video -->
                 <div>
-                    <div class="mx-auto w-72">
-                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-gray-800" style="aspect-ratio: 9 / 19.5;">
-                            <video autoplay loop muted playsinline class="w-full h-full object-contain" style="background-color: #000;">
+                    <div class="mx-auto" id="riservaFrame">
+                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-gray-800">
+                            <video id="riservaVideo" autoplay loop muted playsinline style="display: block; background-color: #000;">
                                 <source src="Riserva screens v6.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -296,10 +296,33 @@
     </section>
 
     <script>
+        // Size frames to exact video dimensions
+        function sizeFrameToVideo(videoId, frameId) {
+            const video = document.getElementById(videoId);
+            const frame = document.getElementById(frameId);
+
+            function updateFrameSize() {
+                if (video.videoWidth && video.videoHeight) {
+                    frame.style.width = video.videoWidth + 'px';
+                    frame.style.height = video.videoHeight + 'px';
+                }
+            }
+
+            video.addEventListener('loadedmetadata', updateFrameSize);
+            // In case metadata is already loaded
+            if (video.readyState >= 1) {
+                updateFrameSize();
+            }
+        }
+
         // Video switching for Hawaiian Mobile App section
         document.addEventListener('DOMContentLoaded', function() {
             const featureCards = document.querySelectorAll('.feature-card');
             const video = document.getElementById('hawaiianMobileVideo');
+
+            // Size frames to exact video dimensions
+            sizeFrameToVideo('hawaiianMobileVideo', 'hawaiianMobileFrame');
+            sizeFrameToVideo('riservaVideo', 'riservaFrame');
 
             featureCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
