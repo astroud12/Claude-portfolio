@@ -22,14 +22,13 @@
     <meta name="twitter:description" content="Building data-informed products that drive business outcomes">
     <meta name="twitter:image" content="https://www.stroud.ai/portfolio-preview.jpg">
 
-    <!-- Google Analytics 4 - IMPORTANT: Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZSVP00KS0"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-DZSVP00KS0');
-        // TODO: After adding your GA4 ID, set up IP exclusion filter in GA4 dashboard to exclude your own traffic
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -89,6 +88,9 @@
     </style>
 </head>
 <body class="antialiased bg-off-white">
+    <!-- Skip to main content -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-deep-blue focus:text-white focus:rounded-lg">Skip to main content</a>
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-charcoal/95 backdrop-blur-md z-50 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
@@ -100,6 +102,7 @@
         </div>
     </nav>
 
+    <main id="main">
     <!-- Hero Section - DARK -->
     <section class="pt-24 pb-16 px-8 bg-charcoal">
         <div class="max-w-7xl mx-auto">
@@ -130,7 +133,7 @@
                     <p class="text-sm text-gray-900 mb-1">Understand the problem</p>
                     <p class="text-xs text-gray-600">Pair curiosity & data to uncover friction worth solving.</p>
                 </div>
-                <svg class="hidden lg:block w-8 h-8 text-deep-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="hidden lg:block w-8 h-8 text-deep-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
                 <div class="bg-off-white p-6 rounded-2xl border-2 border-deep-blue w-full lg:w-56 h-40 flex flex-col">
@@ -138,7 +141,7 @@
                     <p class="text-sm text-gray-900 mb-1">Turn friction into focused opportunity.</p>
                     <p class="text-xs text-gray-600">Generate creative solutions, and prioritize</p>
                 </div>
-                <svg class="hidden lg:block w-8 h-8 text-deep-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="hidden lg:block w-8 h-8 text-deep-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
                 <div class="bg-off-white p-6 rounded-2xl border-2 border-deep-blue w-full lg:w-56 h-40 flex flex-col">
@@ -146,7 +149,7 @@
                     <p class="text-sm text-gray-900 mb-1">Ship light & often</p>
                     <p class="text-xs text-gray-600">Leanest product delivery that enables hypothesis validation</p>
                 </div>
-                <svg class="hidden lg:block w-8 h-8 text-deep-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="hidden lg:block w-8 h-8 text-deep-blue flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
                 <div class="bg-off-white p-6 rounded-2xl border-2 border-deep-blue w-full lg:w-56 h-40 flex flex-col">
@@ -350,6 +353,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <script>
         // Analytics & Video switching
